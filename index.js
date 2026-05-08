@@ -67,34 +67,34 @@ database.forEach(function (user) {
 console.log(userAktual)
 
 // 3) Show all posts
-if (userAktual !== null) {
-    newsfeed.forEach(function (item) {
-        console.log(`${item.username} ka postuar ${item.timeline}`)
-    })
-}
+// if (userAktual !== null) {
+//     newsfeed.forEach(function (item) {
+//         console.log(`${item.username} ka postuar ${item.timeline}`)
+//     })
+// }
 // 4) Show only my posts
-for (let i = 0; i < newsfeed.length; i++) {
-    if (userAktual.username === newsfeed[i].username) {
-        console.log('Show only my posts', newsfeed[i].timeline)
-    }
-}
+// for (let i = 0; i < newsfeed.length; i++) {
+//     if (userAktual.username === newsfeed[i].username) {
+//         console.log('Show only my posts', newsfeed[i].timeline)
+//     }
+// }
 // 5) Add a new post
-let newPost = prompt('newPost');
-let newObject = {
-    username: 'New user',
-    timeline: newPost,
-    likes: 0,
-    comments: []
-}
-newsfeed.push(newObject);
-console.log(newsfeed)
+// let newPost = prompt('newPost');
+// let newObject = {
+//     username: 'New user',
+//     timeline: newPost,
+//     likes: 0,
+//     comments: []
+// }
+// newsfeed.push(newObject);
+// console.log(newsfeed)
 // 6) Like the first post
-newsfeed[0].likes = newsfeed[0].likes + 1;
-console.log(newsfeed)
+// newsfeed[0].likes = newsfeed[0].likes + 1;
+// console.log(newsfeed)
 // 7) Add a comment to the first post
-let newComment = prompt('New Comment');
-newsfeed[0].comments.push(newComment)
-console.log('komenti', newsfeed[0])
+// let newComment = prompt('New Comment');
+// newsfeed[0].comments.push(newComment)
+// console.log('komenti', newsfeed[0])
 // 8) Admin Check Function
 function isAdminUser(username) {
     for (let i = 0; i < database.length; i++) {
@@ -110,38 +110,56 @@ function isAdminUser(username) {
     }
 
 }
-isAdminUser(database[0].username);
+// isAdminUser(database[0].username);
+
 // 9) Full Logic: 
 let option = prompt('Choose an option:\n1. Show all posts\n2. Show my posts\n3. Add post\n4. Like first post\n5. Check admin\n6. Comment on first post')
 switch (option) {
     case '1':
-       
-    newsfeed.forEach(function (item) {
-        console.log(`${item.username} ka postuar ${item.timeline}`)
-    })
+
+        newsfeed.forEach(function (item) {
+            console.log(`${item.username} ka postuar ${item.timeline}`)
+        })
         break;
     case '2':
         for (let i = 0; i < newsfeed.length; i++) {
-    if (userAktual.username === newsfeed[i].username) {
-        console.log('Show only my posts', newsfeed[i].timeline)
-    }
-}
+            if (userAktual.username === newsfeed[i].username) {
+                console.log('Show only my posts', newsfeed[i].timeline)
+            }
+        }
         break;
     case '3':
+        let newPost = prompt('newPost');
+        let newObject = {
+            username: 'New user',
+            timeline: newPost,
+            likes: 0,
+            comments: []
+        }
+        newsfeed.push(newObject);
+        console.log(newsfeed)
         break;
     case '4':
+        newsfeed[0].likes = newsfeed[0].likes + 1;
+        console.log(newsfeed)
         break;
     case '5':
+
+        isAdminUser(userAktual.username);
         break;
     case '6':
+        let newComment = prompt('New Comment');
+        newsfeed[0].comments.push(newComment)
+        console.log('komenti', newsfeed[0])
         break;
     default:
+        console.log('ju lutem shtypni numrat 1-6')
         break;
 }
 
 // git status me i kqyr a i komente
 // git add . (git add all )
 // git commit -m "Social media implemetion"
-// git push 
+// git push
 // git config user.name "mbresabytyq"
 //git config user.email "mbresabytyq@gmail.com"
