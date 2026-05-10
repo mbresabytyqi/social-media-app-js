@@ -56,7 +56,7 @@ let usernamePrompt = prompt('Username');
 let passwordPrompt = prompt('Password');
 let userAktual = null;
 
-database.forEach(function (user) {
+database.forEach((user) => {
     if (usernamePrompt === user.username && passwordPrompt === user.password) {
         console.log('Logged In');
         userAktual = user;
@@ -68,7 +68,7 @@ console.log(userAktual)
 
 // 3) Show all posts
 // if (userAktual !== null) {
-//     newsfeed.forEach(function (item) {
+//     newsfeed.forEach((item) => {
 //         console.log(`${item.username} ka postuar ${item.timeline}`)
 //     })
 // }
@@ -78,6 +78,11 @@ console.log(userAktual)
 //         console.log('Show only my posts', newsfeed[i].timeline)
 //     }
 // }
+// database.forEach((post) => {
+//     if(post.username === userAktual.username){
+//         console.log('my post', post.timeline)
+//     }
+// })
 // 5) Add a new post
 // let newPost = prompt('newPost');
 // let newObject = {
@@ -96,28 +101,59 @@ console.log(userAktual)
 // newsfeed[0].comments.push(newComment)
 // console.log('komenti', newsfeed[0])
 // 8) Admin Check Function
-function isAdminUser(username) {
+//Arrow function
+const isAdminUser = username => {
     for (let i = 0; i < database.length; i++) {
         if (username === database[i].username) {
             if (database[i].isAdmin === true) {
                 console.log('Admin access granted')
-
             }
             else {
                 console.log('Access denied')
             }
         }
     }
-
 }
-// isAdminUser(database[0].username);
+
+isAdminUser(userAktual.username)
+
+
+// isAdminUser = username => {
+//     for (let i = 0; i < database.length; i++) {
+//         if (username === database[i].username) {
+//             if (database[i].isAdmin === true) {
+//                 console.log('Admin access granted')
+
+//             }
+//             else {
+//                 console.log('Access denied')
+//             }
+//         }
+//     }
+
+// }
+// isAdminUser(userAktual.username);
+
+//me forEach 
+// database.forEach((user) =>  {
+//     if(user.username === userAktual.username){
+//         // console.log(user)
+//         if(user.isAdmin === true){
+//              console.log('Admin access granted')
+
+//             }
+//             else {
+//                 console.log('Access denied')
+//             }
+//     }
+// })
 
 // 9) Full Logic: 
 let option = prompt('Choose an option:\n1. Show all posts\n2. Show my posts\n3. Add post\n4. Like first post\n5. Check admin\n6. Comment on first post')
 switch (option) {
     case '1':
 
-        newsfeed.forEach(function (item) {
+        newsfeed.forEach((item) => {
             console.log(`${item.username} ka postuar ${item.timeline}`)
         })
         break;
