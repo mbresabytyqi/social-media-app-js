@@ -10,36 +10,37 @@ const people = [
 // _Shpjegimi:
 // Numrat tek janë ata që kur i pjestojmë me 2, mbetja (remainder) është 1.
 // Kështu kontrollojmë id % 2 !== 0._
+
+// me i shtu brenda nje array qe
 const returnOnlyOddPeople = people => {
+    let onlyOddPeople = [];
     for (let i = 0; i < people.length; i++) {
         if (people[i].id % 2 !== 0) {
-            console.log(`ID ${people[i].id} : ${people[i].name}`)
+            onlyOddPeople.push(people[i]);
         }
     }
+    return onlyOddPeople;
 }
-returnOnlyOddPeople(people);
+console.log(returnOnlyOddPeople(people));
 // **2. maxNr(a, b)**
 // Shkruani një funksion maxNr(a, b) që kthen numrin më të madh mes dy numrave.
 function maxNr(a, b) {
-    if (a > b) {
-        return `${a} eshte me i madh se ${b}`;
-    } else {
-        return `${b} eshte me i madh se ${a}`
-    }
+    //     if (a > b) {
+    //         return `${a} eshte me i madh se ${b}`;
+    //     } else {
+    //         return `${b} eshte me i madh se ${a}`
+    //     }
+
+    return a > b ? a : b;
 }
-console.log(maxNr(5, 10))
-console.log(maxNr(11, 10))
+console.log(maxNr(5, 9))
+console.log(maxNr(11, 6))
 // **3. isLandscape(width, height)** 
 // Shkruani një funksion që kthen true nëse gjerësia është më e madhe se lartësia.
 // _Shpjegimi:
 // Nëse width është më i madh se height, fotoja është në pozicion landscape._
-const isLandscape = (width, height) => {
-    if (width > height) {
-        return true
-    }
-    return false
+const isLandscape = (width, height) => width > height;
 
-}
 console.log(isLandscape(500, 200));
 console.log(isLandscape(200, 500));
 // **4. fizzBuzz(input)**
@@ -50,12 +51,18 @@ console.log(isLandscape(200, 500));
 // Nëse nuk është numër → “not a number”
 let numri = Number(prompt('Shkruani nje numer'))
 function fizzBuzz(numri) {
+    if (isNaN(numri)) {
+        console.log('not a number')
+        return
+    }
     if (numri % 3 === 0 && numri % 5 === 0) {
         console.log('FizzBuzz')
     } else if (numri % 3 === 0) {
         console.log('Fizz')
     } else if (numri % 5 === 0) {
         console.log('Buzz')
+    } else {
+        console.log(numri)
     }
 
 }
@@ -69,19 +76,23 @@ fizzBuzz(numri);
 let speed = Number(prompt('shpejtesia juaj'))
 function checkSpeed(speed) {
 
+if(isNaN(speed)){
+    console.log('not a number')
+    return;
+}
     if (speed <= 70) {
         console.log('Ok')
         return;
     }
-    let piket = Math.floor(speed - 70) / 5
+    let piket = Math.floor((speed - 70) / 5)
     if (piket >= 12) {
         console.log('License suspended')
     } else {
         console.log('Piket', piket)
     }
 
-
-} checkSpeed(speed);
+}
+ checkSpeed(speed);
 
 // _Shpjegimi:
 // Çdo 5 km/h mbi 70 jep 1 pikë; nëse pikët arrijnë 12, shoferi humb patentën.
@@ -105,7 +116,7 @@ function countTruthy(truthyValues) {
     }
     return count;
 }
-console.log('Truthy',countTruthy(truthyValues))
+console.log('Truthy', countTruthy(truthyValues))
 // **7. sum(limit)**
 // Shkruani një funksion që merr një array me numra dhe gjen shumën e të gjithë numrave që pjestohen 
 // me 3 ose me 5.
@@ -114,7 +125,7 @@ const numbers = [1, 3, 5, 6, 7, 9, 10];
 // Shikojmë çdo numër tek array-i. Nëse një numër pjestohen me 3 ose me 5, 
 // e shtojmë në shuma. Në fund kthejmë shumën._
 
-function sum(limit) {
+function sum(numbers) {
     let shuma = 0;
     for (let i = 0; i < numbers.length; i++) {
         if (numbers[i] % 3 === 0 || numbers[i] % 5 === 0)
@@ -122,7 +133,7 @@ function sum(limit) {
     }
     return shuma;
 }
-console.log('shuma :',sum())
+console.log('shuma :', sum(numbers))
 
 // **8. Krijo një listë notash [9, 8, 5, 10] dhe gjej mesataren duke përdorur forEach.**
 
@@ -138,8 +149,10 @@ console.log('Mesatare', mesataren)
 ////filter  
 const numrat10 = [2, 30, 5, 11, 15, 50]
 // **9. Krijo një funksion getNumbersGreaterThan10(numbers) që kthen vetëm numrat më të mëdhenj se 10.**
-const getNumbersGreaterThan10 = numrat10.filter((nr) => nr > 10)
-console.log(getNumbersGreaterThan10)
+const getNumbersGreaterThan10 = numrat10 => {
+    return numrat10.filter(nr => nr > 10)
+}
+console.log(getNumbersGreaterThan10(numrat10))
 
 // **10. Krijo një funksion formatProductNames(products) që kthen një array të ri ku çdo emër ka tekstin:**
 // "Product: " përpara emrit.
@@ -151,5 +164,7 @@ const products = [
     { name: 'Keyboard', price: 80 },
     { name: 'Monitor', price: 180 }
 ]
-const formatProductNames = products.map((products) => 'Product: ' + products.name)
-console.log(formatProductNames)
+const formatProductNames = products =>{
+   return products.map( product=>'Product: ' + product.name)
+}
+console.log(formatProductNames(products))
